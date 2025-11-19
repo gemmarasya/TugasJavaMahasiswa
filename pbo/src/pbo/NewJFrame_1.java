@@ -6,6 +6,8 @@ package pbo;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -72,6 +74,7 @@ public class NewJFrame_1 extends javax.swing.JFrame {
         jTable = new javax.swing.JTable();
         btnkeluar1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        bttncsv = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 255, 204));
@@ -163,6 +166,13 @@ public class NewJFrame_1 extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Algerian", 1, 18)); // NOI18N
         jLabel7.setText("DATA MAHASISWA");
 
+        bttncsv.setText("Insert CSV");
+        bttncsv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttncsvActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -170,42 +180,47 @@ public class NewJFrame_1 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
-                                .addGap(92, 92, 92)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(laki)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(perempuan))
-                                    .addComponent(txtnim)
-                                    .addComponent(txtnama)
-                                    .addComponent(txtprodi)
-                                    .addComponent(txttahun, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(73, 73, 73)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(69, 69, 69))))
+                        .addGap(34, 34, 34)
+                        .addComponent(btntambah)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnhapus, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(btnkeluar1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnkeluar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bttncsv))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(174, 174, 174)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(69, 69, 69))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(101, 101, 101)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel5))
+                                    .addGap(92, 92, 92)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(laki)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(perempuan))
+                                        .addComponent(txtnim)
+                                        .addComponent(txtnama)
+                                        .addComponent(txtprodi)))
+                                .addComponent(jLabel3)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(165, 165, 165)
+                                    .addComponent(txttahun, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btntambah, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnhapus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnkeluar1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnkeluar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(33, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,17 +244,18 @@ public class NewJFrame_1 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtprodi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txttahun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btntambah)
                     .addComponent(btnhapus)
                     .addComponent(btnkeluar)
-                    .addComponent(btnkeluar1))
-                .addGap(24, 24, 24)
+                    .addComponent(btnkeluar1)
+                    .addComponent(bttncsv))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
@@ -357,6 +373,57 @@ public class NewJFrame_1 extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnkeluar1ActionPerformed
 
+    private void bttncsvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttncsvActionPerformed
+        // TODO add your handling code here:
+    JFileChooser fileChooser = new JFileChooser();
+    int result = fileChooser.showOpenDialog(this);
+
+    if (result == JFileChooser.APPROVE_OPTION) {
+        java.io.File file = fileChooser.getSelectedFile();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+
+            String line;
+            int count = 0;
+            boolean skipHeader = true;
+
+            while ((line = br.readLine()) != null) {
+
+                if (skipHeader) {
+                    skipHeader = false;
+                    continue;
+                }
+
+                // FIX: sesuaikan jumlah kolom CSV
+                String[] data = line.split(",");
+                if (data.length < 5) continue;
+
+                PreparedStatement pst = conn.prepareStatement(
+                    "INSERT INTO datamahasiswa (nim, nama, jeniskelamin, prodi, tahunmasuk) " +
+                    "VALUES (?, ?, ?, ?, ?) ON CONFLICT (nim) DO NOTHING"
+                );
+                pst.setString(1, data[0].trim());
+                pst.setString(2, data[1].trim());
+                pst.setString(3, data[2].trim());
+                pst.setString(4, data[3].trim());
+                pst.setString(5, data[4].trim());
+                pst.executeUpdate();
+
+                count++;
+            }
+
+            JOptionPane.showMessageDialog(this, count + " data berhasil diimport!");
+            tampilkanData();   // FIX: refresh tabel data
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Gagal import CSV: " + e.getMessage());
+        }
+    }
+
+
+
+    }//GEN-LAST:event_bttncsvActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -397,6 +464,7 @@ public class NewJFrame_1 extends javax.swing.JFrame {
     private javax.swing.JButton btnkeluar;
     private javax.swing.JButton btnkeluar1;
     private javax.swing.JButton btntambah;
+    private javax.swing.JButton bttncsv;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
